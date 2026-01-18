@@ -1,4 +1,4 @@
-import { useCallback, useState , useEffect , useRef} from 'react'
+import { useCallback, useState, useEffect, useRef } from 'react'
 import './index.css'
 
 
@@ -6,6 +6,7 @@ function App() {
   const [length, setlength] = useState(8)
   const [numberAllowed, setnumberAllowed] = useState(false)
   const [charAllowed, setcharAllowed] = useState(false)
+  const [isCopied, setIsCopied] = useState(false)
   const [password, setpassword] = useState("")
 
   // useRef hook 
@@ -27,12 +28,18 @@ function App() {
   }, [length, numberAllowed, charAllowed, setpassword])
 
   useEffect(() => {
-    passwordgenerator() 
-  }, [length , charAllowed , numberAllowed])
+    passwordgenerator()
+  }, [length, charAllowed, numberAllowed])
 
-  const copypasswordtoclipboard = useCallback(()=>{
+  const copypasswordtoclipboard = useCallback(() => {
     passwordref.current?.select()
+    // passwordref.current?.setSelectionRange(0,10);
     window.navigator.clipboard.writeText(password)
+    setIsCopied(true)
+
+    setTimeout(() => {
+      setIsCopied(false)
+    }, 1200)
   }, [password])
 
 
@@ -50,10 +57,14 @@ function App() {
             ref={passwordref}
           />
 
-          <button 
-          onClick={copypasswordtoclipboard}
-            className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'
-          >copy</button>
+          <button
+            onClick={copypasswordtoclipboard}
+            className={`outline-none px-3 py-0.5 shrink-0 text-white transition-all duration-300
+    ${isCopied ? 'bg-green-600' : 'bg-blue-700'}
+  `}
+          >
+            {isCopied ? 'Copied' : 'Copy'}
+          </button>
         </div>
         <div className='flex text-sm gap-x-5'>
           <div className='flex items-center gap-x-1'>
@@ -75,7 +86,7 @@ function App() {
               onChange={() => {
                 setnumberAllowed((prev) => !prev)
               }}
-            /> 
+            />
             <label>Numbers</label>
           </div>
           <div className='flex items-center gap-x-1'>
@@ -86,7 +97,7 @@ function App() {
               onChange={() => {
                 setcharAllowed((prev) => !prev)
               }}
-            /> 
+            />
             <label>character</label>
           </div>
         </div>
@@ -96,3 +107,4 @@ function App() {
 }
 
 export default App
+
