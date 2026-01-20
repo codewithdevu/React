@@ -10,8 +10,7 @@ function App() {
     const [to, setto] = useState("inr")
     const [convertedamount, setconvertedamount] = useState(0)
 
-    const currencyinfo = usecurrencyinfo(from)
-
+    const currencyinfo = usecurrencyinfo("usd")
     const options = Object.keys(currencyinfo)
 
     const swap = () => {
@@ -22,7 +21,8 @@ function App() {
     }
 
     const convert = () => {
-        setconvertedamount(amount * currencyinfo[to])
+        const rate = currencyinfo[to] / currencyinfo[from]
+        setconvertedamount(amount * rate)
     }
 
     return (
@@ -45,15 +45,18 @@ function App() {
                             <InputBox
                                 label="From"
                                 amount={amount}
-                                curr
-                                
+                                currencyOptions={options}
+                                oncurrencychange={ (currency) => setfrom(currency)}
+                                selectcurrency={from}
+                                onamountchange={(amount)=> setamount(amount)}
+                              
                             />
                         </div>
                         <div className="relative w-full h-0.5">
                             <button
                                 type="button"
                                 className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-0.5"
-
+                                onClick={swap}
                             >
                                 swap
                             </button>
@@ -61,11 +64,16 @@ function App() {
                         <div className="w-full mt-1 mb-4">
                             <InputBox
                                 label="To"
+                                amount={convertedamount}
+                                currencyOptions={options}
+                                selectcurrency={to}
+                                oncurrencychange={ (currency) => setto(currency)}
+                                // amountdisable
 
                             />
                         </div>
                         <button type="submit" className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg">
-                            Convert
+                            Convert {from.toUpperCase()} to {to.toUpperCase()}
                         </button>
                     </form>
                 </div>
