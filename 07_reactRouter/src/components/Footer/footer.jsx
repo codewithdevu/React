@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom';
 
 function Footer() {
-     return (
+    return (
         <footer className="bg-white border-y">
             <div className="mx-auto w-full max-w-xl p-4 py-6 lg:py-8">
                 <div className="md:flex md:justify-between">
@@ -20,20 +20,20 @@ function Footer() {
                             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase">Resources</h2>
                             <ul className="text-gray-500 font-medium">
                                 <li className="mb-4">
-                                    <NavLink 
-                                    to={""}
-                                    className={({isActive}) => ` hover:underline ${isActive ?"text-orange-700":"text-gray-500"}`}>
+                                    <NavLink
+                                        to={""}
+                                        className={({ isActive }) => ` hover:underline ${isActive ? "text-orange-700" : "text-gray-500"}`}>
                                         Home
                                     </NavLink>
                                 </li>
                                 <li className="mb-4">
-                                    <NavLink 
-                                    to={"/About"}
-                                    className={({isActive}) => ` hover:underline ${isActive ?"text-orange-700":"text-gray-500"}`}>
+                                    <NavLink
+                                        to={"/About"}
+                                        className={({ isActive }) => ` hover:underline ${isActive ? "text-orange-700" : "text-gray-500"}`}>
                                         About
                                     </NavLink>
                                 </li>
-                             
+
                             </ul>
                         </div>
                         <div>
@@ -42,7 +42,7 @@ function Footer() {
                                 <li className="mb-4">
                                     <NavLink
                                         to={"/github"}
-                                        className= {({isActive}) => `hover:underline ${isActive?"text-orange-700":"text-gray-500"}`}
+                                        className={({ isActive }) => `hover:underline ${isActive ? "text-orange-700" : "text-gray-500"}`}
                                         target="_blank"
                                         rel="noreferrer"
                                     >
@@ -166,4 +166,4 @@ function Footer() {
     );
 }
 
-export default Footer
+export default Footer;
