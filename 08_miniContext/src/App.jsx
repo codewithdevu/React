@@ -1,14 +1,19 @@
 
 import './App.css'
-import Usercontextprovider from './context/Usercontext'
+import Login from './components/login'
+import Profile from './components/profile'
+import UserContextProvider from './context/Usercontextprovider'
 
 function App() {
+  
 
   return (
-    <Usercontextprovider>
-      <h1>Learning chai or react with chai aur code</h1>
-    </Usercontextprovider>
+    <UserContextProvider>
+      <h1>React with Chai and share is important</h1>
+      <Login />
+      <Profile />
+    </UserContextProvider>
   )
 }
-        
+
 export default App
