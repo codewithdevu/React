@@ -1,6 +1,4 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { TodoProvider } from './Context'
 
@@ -8,8 +6,33 @@ function App() {
   const [todos , settodos ] = useState([])
 
   const addTodo = (newtodo) => {
-    settodos((oldtodo) => [{id: Date.now() , ...newtodo }, ...oldtodo])
+    settodos((prev) => [{id: Date.now() , ...newtodo }, ...prev])
   }
+
+  const updateTodo = (id , updatedTodo) => {
+    settodos((prev) => prev.map((prevtodo) => (prevtodo.id === id ? updatedTodo : prevtodo)))
+  }
+
+  const deleteTodo = (id) => {
+    settodos((prev) => prev.filter((prevtodo) => prevtodo.id !== i))
+  }
+
+  const toggleComplete = (id) => {
+    settodos((prev) => prev.map((prevtodo) => prevtodo === id ? {...prevtodo , complete: !prevtodo.complete} : prevtodo))
+  }
+
+  useEffect(() => {
+    const todos = JSON.parse(localStorage.getItem("todos"))
+
+    if(todos && todos.length > 0){
+      settodos(todos)
+    }
+  } , [])
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos))
+  }, [todos])
+
 
   return (
     <TodoProvider value={{todos , toggleComplete , addTodo , deleteTodo , updateTodo}}>
