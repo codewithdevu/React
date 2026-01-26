@@ -1,8 +1,8 @@
 function UpdateTodo({ todo, setInput, setEditId }) {
 
     const handleEdit = () => {
-        setInput(todo.text)   // 👈 AddTodo input me text aaya
-        setEditId(todo.id)    // 👈 update mode ON
+        setInput(todo.text)  
+        setEditId(todo.id)   
     }
 
     return (
