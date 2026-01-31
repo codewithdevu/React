@@ -57,6 +57,6 @@ async logout() {
 }
 }
 
-const service = new Authservice()
+const authservice = new Authservice()
 
 export default authservice;
