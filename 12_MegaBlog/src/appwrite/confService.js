@@ -3,7 +3,7 @@ import config from "../config/config";
 import { Client, ID, Databases, Query, Storage, Models } from "appwrite";
 
 
-export class Authservice {
+export class Service {
     client = new Client();
     databases;
     storage;
@@ -131,6 +131,6 @@ export class Authservice {
     }
 }
 
-const authservice = new Authservice();
+const service = new Service();
 
-export default authservice;
+export default service;
