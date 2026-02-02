@@ -83,7 +83,7 @@ export class Service {
         }
     }
 
-    async getPost(queries = [Query.equal("status", "equal")]){
+    async getPosts(queries = [Query.equal("status", "equal")]){
         try {
             return await this.databases.listDocuments(
                 config.appwriteDatabaseId,
@@ -91,7 +91,7 @@ export class Service {
                 queries,
             )
         } catch (error) {
-            console.log("Appwrite service :: getPost :: error", error);
+            console.log("Appwrite service :: getPosts :: error", error);
             return false;
         }
     }

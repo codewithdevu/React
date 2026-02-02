@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { act } from 'react'
-import Container from '../container/container'
+import Container from '../Container/Container'
 
 function Header() {
     const authstatus = useSelector((state) => 
