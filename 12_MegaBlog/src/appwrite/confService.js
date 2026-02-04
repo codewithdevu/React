@@ -1,6 +1,6 @@
 // @ts-nocheck
 import config from "../config/config";
-import { Client, ID, Databases, Query, Storage, Models } from "appwrite";
+import { Client, ID, Databases, Query, Storage} from "appwrite";
 
 
 export class Service {
@@ -19,7 +19,7 @@ export class Service {
 
     async createPost({ title, slug, content, featuredImage, status, userId }) {
         try {
-            return await this.databases.createDocument < Models.Document > (
+            return await this.databases.createDocument(
                 config.appwriteDatabaseId,
                 config.appwriteCollectionId,
                 slug,

@@ -30,3 +30,5 @@ function EditPost() {
     ) : null 
 
 }
+
+export default EditPost;
