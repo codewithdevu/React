@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import config from "../config/config"
 import { Client, Account, ID } from "appwrite";
 
@@ -42,9 +42,9 @@ async getCurrentUser() {
     try {
         return await this.account.get()
     } catch (error) {
-        console.log("Appwrite service :: getCurrentuser :: error" , error);
+        // console.log("Appwrite service :: getCurrentuser :: error" , error);
+        return null;
     }
-    return null;
 }
 
 async logout() {

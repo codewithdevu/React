@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import config from "../config/config";
 import { Client, ID, Databases, Query, Storage} from "appwrite";
 
