@@ -116,7 +116,7 @@ export default function PostForm({ post }) {
                 {post?.featuredImage && (
                     <div className="w-full mb-4">
                         <img
-                            src={Service.getFilePreview(post.featuredImage)}
+                            src={Service.getFileView(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />
