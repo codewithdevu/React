@@ -1,6 +1,6 @@
 
 import config from "../config/config";
-import { Client, ID, Databases, Query, Storage} from "appwrite";
+import { Client, ID, Databases, Query, Storage } from "appwrite";
 
 
 export class Service {
@@ -83,7 +83,7 @@ export class Service {
         }
     }
 
-    async getPosts(queries = [Query.equal("status", "equal")]){
+    async getPosts(queries = [Query.equal("status", "equal")]) {
         try {
             return await this.databases.listDocuments(
                 config.appwriteDatabaseId,
@@ -96,21 +96,21 @@ export class Service {
         }
     }
 
-    async uploadFile(file){
+    async uploadFile(file) {
         try {
-            return await this.storage.createFile(
-                config.appwriteBucketId,
+            return await this.bucket.createFile(
+                bucketId,
                 ID.unique(),
                 file
-            )
+            );
         } catch (error) {
             console.log("Appwrite service :: uploadFile :: error", error);
             return false;
-            
+
         }
     }
 
-    async deleteFile(fileId){
+    async deleteFile(fileId) {
         try {
             await this.storage.deleteFile(
                 config.appwriteBucketId,
@@ -119,11 +119,11 @@ export class Service {
             return true;
         } catch (error) {
             console.log("Appwrite service :: deleteFile :: error", error);
-            
+
         }
     }
 
-    getFilePreview(fileId){
+    getFilePreview(fileId) {
         return this.storage.getFilePreview(
             config.appwriteBucketId,
             fileId
