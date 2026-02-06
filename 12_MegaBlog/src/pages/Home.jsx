@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Postcard } from '../components'
 import service from '../appwrite/confService'
+import { useSelector } from 'react-redux'
 
 function Home() {
     const [posts, setposts] = useState([])
+
+    const userData = useSelector((state) => state.auth.userData)
 
     useEffect(() => {
         service.getPosts().then((posts) => {
@@ -13,7 +16,8 @@ function Home() {
         })
     }, [])
  
-    if (posts.length === 0) {
+    if (!userData) {
+        return(
             <div className='w-full py-8 mt-4 text-center'>
                 <Container>
                     <div className='flex flex-wrap '>
@@ -25,6 +29,7 @@ function Home() {
                     </div>
                 </Container>
             </div>
+        )
     }
 
     return (
